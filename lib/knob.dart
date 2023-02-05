@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:time_duration_picker/clock_calc.dart';
 import 'package:flutter/material.dart';
+import 'package:time_duration_picker/simple_time.dart';
 
 import 'knob_clipper.dart';
 
@@ -13,6 +14,8 @@ class Knob extends StatefulWidget {
   final IconData icon2Data;
   final void Function(String) onIcon1RotatedCallback;
   final void Function(String) onIcon2RotatedCallback;
+  final SimpleTime? icon1InitialValue;
+  final SimpleTime? icon2InitialValue;
   final Color iconColor;
   final void Function(String)? setDurationCallback;
   final BoxDecoration? knobDecoration;
@@ -26,6 +29,8 @@ class Knob extends StatefulWidget {
       required this.icon1Data,
       required this.icon2Data,
       required this.iconColor,
+      this.icon1InitialValue,
+      this.icon2InitialValue,
       this.setDurationCallback,
       this.knobDecoration})
       : super(key: key);
@@ -62,10 +67,11 @@ class _KnobState extends State<Knob> {
                 (1 - widget.outerRadiusRatio) * 0.5 +
                 (knobWidthRatio - iconWidthRatio) * 0.5),
         centerOffset);
-    WidgetsBinding.instance!
+    WidgetsBinding.instance
         .addPostFrameCallback((_) => _initializeOffsetsAndAngles(context));
-    icon1Angle = 0;
-    icon2Angle = pi;
+    icon1Angle = widget.icon1InitialValue?.toRadianAngle() ?? 0;
+    icon2Angle = widget.icon2InitialValue?.toRadianAngle() ?? pi;
+    
   }
 
   @override

@@ -1,6 +1,7 @@
 library time_duration_picker;
 
 import 'package:flutter/material.dart';
+import 'package:time_duration_picker/simple_time.dart';
 
 import 'clock.dart';
 import 'knob.dart';
@@ -17,6 +18,11 @@ class TimeDurationPicker extends StatelessWidget {
   final BoxDecoration? knobBackgroundDecoration;
   final BoxDecoration? clockDecoration;
   final TextStyle? clockTextStyle;
+  /// First icon's initial value
+  final SimpleTime? icon1InitialValue;
+
+  /// Second icon's initial value
+  final SimpleTime? icon2InitialValue;
 
   const TimeDurationPicker(
       {Key? key,
@@ -27,6 +33,8 @@ class TimeDurationPicker extends StatelessWidget {
       required this.onIcon2RotatedCallback,
       this.iconColor = Colors.white,
       this.knobDecoration,
+      this.icon1InitialValue,
+    this.icon2InitialValue,
       this.knobBackgroundDecoration,
       this.clockDecoration,
       this.clockTextStyle,
@@ -62,6 +70,8 @@ class TimeDurationPicker extends StatelessWidget {
                   icon1Data: icon1Data,
                   icon2Data: icon2Data,
                   iconColor: iconColor,
+                  icon1InitialValue: icon1InitialValue,
+                  icon2InitialValue: icon2InitialValue,
                   knobDecoration: knobDecoration,
                   setDurationCallback: setDurationCallback,
                 ),
